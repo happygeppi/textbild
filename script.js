@@ -41,7 +41,7 @@ let TEXT;
 
 function Init() {
   CreateHTML();
-  LoadImage();
+  // LoadImage();
 }
 
 function CreateHTML() {
