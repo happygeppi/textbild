@@ -41,6 +41,7 @@ let TEXT;
 
 function Init() {
   CreateHTML();
+  LoadImage();
 }
 
 function CreateHTML() {
@@ -62,6 +63,27 @@ function CreateHTML() {
       Char.innerHTML = chars[Math.floor(Math.random() * chars.length)];
     }
   }
+}
+
+function LoadImage() {
+  const url = "https://www.happygeppi.github.io/textbild/dynamo.png";
+  
+  fetch(url)
+  .then((response) => response.blob())
+  .then((blob) => {
+    const file = new File([blob], url.split("/").pop(), {
+      type: blob.type,
+    });
+
+    const dataTransfer = new DataTransfer();
+
+    dataTransfer.items.add(file);
+
+    $("file-input").files = dataTransfer.files;
+  })
+  .catch((error) => {
+    console.error(error);
+  });
 }
 
 function ProcessImage(pixels) {
